@@ -1,0 +1,2 @@
+pdb2fasta pdb.pdb > seq.fasta
+    convert PDB file pdb.pdb to FASTA sequence file seq.fasta
