@@ -21,7 +21,9 @@ while ischar(line)
     resn=line(18:20);
     chainID=line(22);
     atom=line(13:16);
-    if (~strcmp(line(1:6),'ATOM  ') && ~strcmp(line(1:6),'HETATM')) || (~strcmp(atom,' CA '))
+    altid=line(17:17);
+    if (~strcmp(line(1:6),'ATOM  ') && ~strcmp(line(1:6),'HETATM')) || ...
+       (~strcmp(atom,' CA ')) || (~strcmp(altid,' ') && ~strcmp(altid,'A'))
         continue
     end
     for ii=1:length(aa3)

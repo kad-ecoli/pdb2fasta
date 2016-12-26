@@ -20,9 +20,10 @@ for (pdb_file in args){
         chainID=substr(line,22,22)
         resn=substr(line,18,20)
         atom=substr(line,13,16)
+	altid=substr(line,17,17)
         if ((substr(line,1,6)!="ATOM  " && substr(line,1,6)!="HETATM")
            ||atom!=" CA "||is.element(resn,names(aa3to1))==FALSE
-           ){next} # continue
+	   ||(altid!=" " && altid!="A")){next} # continue
         if (chainID !=chain_prev){
             if (chain_prev==""){
                 cat(paste(">",filename,":",chainID,"\n",sep=""))

@@ -33,6 +33,7 @@ char *pdb2fasta(char *pdb_file){
     char line[80]; // one line in PDB
     char resn[4];  // residue type
     char atom[5];  // atom type
+    char altid=' ';  // alternative location identifier
     resn[3]=0;atom[4]=0;
     char chainID=0;   // chain ID of previous chain
     char chainID_new=0; // chain ID of current chain
@@ -69,11 +70,14 @@ char *pdb2fasta(char *pdb_file){
 
     while(fgets(line,80,fp)!=NULL){
         if (strncmp("ENDMDL",line,6)==0) break;
-        if (strlen(line)<22 || (strncmp("ATOM  ",line,6) && strncmp("HETATM",line,6))) continue;
+        if (strlen(line)<22 || (strncmp("ATOM  ",line,6) && \
+            strncmp("HETATM",line,6))) continue;
 
         for (j=0;j<4;j++) atom[j]=line[12+j];
         for (j=0;j<3;j++) resn[j]=line[17+j];
-        if (strcmp(atom," CA ")) continue;
+        altid=line[16];
+        if (strcmp(atom," CA ") || (altid!=' ' && altid!='A') || \
+           (strncmp("HETATM",line,6)==0 && strcmp(resn,"MSE"))) continue;
         chainID_new=line[21];
         if (chainID!=chainID_new){ // new chain
             if (chainID){
