@@ -7,7 +7,7 @@ On Mac or Linux, you can run the programs with:
 , where "pdb.pdb" is the input PDB file pdb.pdb to FASTA sequence file seq.fasta.
 
 The following implements are available: Python2 (.py), Perl5 (.pl), 
-Matlab (.m), R (.R), C (.c), C++ (.cpp), BASH (.sh).
+Matlab (.m), R (.R), C (.c), C++ (.cpp), BASH (.sh), Java (.java).
 
 These programs have consistent behavior over the following scenarios: 
 [1] If atoms have alternative locations (e.g. 3b2c), only those atom with 
